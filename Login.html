@@ -1,0 +1,102 @@
+<div>
+  <form>
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Email address</label>
+      <input
+        type="email"
+        class="form-control"
+        id="exampleInputEmail1"
+        aria-describedby="emailHelp"
+      />
+      <div id="emailHelp" class="form-text">
+        We'll never share your email with anyone else.
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Password</label>
+      <input type="password" class="form-control" id="exampleInputPassword1" />
+    </div>
+    <div class="mb-3 form-check">
+      <input type="checkbox" class="form-check-input" id="exampleCheck1" />
+      <label class="form-check-label" for="exampleCheck1">Check me out</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+
+---------------------------------------------------------------------------------------------------
+<!-- <div class="container">
+    <div style="padding: 30px; border-color: blue">
+      <ul
+        class="nav nav-pills"
+        style="border: 2px; background-color: aqua !important"
+      >
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#!/Home">HOME</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            data-bs-toggle="dropdown"
+            href="#"
+            role="button"
+            aria-expanded="false"
+            >About Us</a
+          >
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#!/info">Info</a></li>
+            <li><a class="dropdown-item" href="#!/Type">Type</a></li>
+            <li><a class="dropdown-item" href="#!/About">About</a></li>
+            <li><hr class="dropdown-divider" /></li>
+            <li><a class="dropdown-item" href="#!/ContactUs">Contact Us</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#!/Login">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#!/Register">Register</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#!/references">References</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled">Disabled</a>
+        </li>
+      </ul>
+
+      <div ui-view></div>
+    </div>
+  </div>
+    
+  </body>-->
+===================================================================================
+js part app.config([ "$stateProvider", function ($stateProvider) {
+$stateProvider .state("Home", { url: "/Home", // template: "<strong>
+  This is first msg</strong
+>", templateUrl: "Home.html", controller: "message1", }) .state("root", { url:
+"/", template: "<strong> Default</strong>", }) .state("second-msg", { url:
+"/second-msg", // template: "<strong> This is second msg</strong>", templateUrl:
+"data.html", controller: "message1", }) .state("info", { // template: "<strong>
+  This is second msg</strong
+>", url: "/info", templateUrl: "Info.html", controller: "message1", })
+.state("Type", { // template: "<strong> This is second msg</strong>", url:
+"/Type", templateUrl: "Type.html", controller: "message1", }) .state("About", {
+// template: "<strong> This is second msg</strong>", url: "/About", templateUrl:
+"About.html", controller: "message1", }) .state("ContactUs", { // template:
+"<strong> This is second msg</strong>", url: "/ContactUs", templateUrl:
+"contact.html", controller: "message1", }) .state("Login", { url: "/Login",
+templateUrl: "Login.html", controller: "message1", }) .state("Register", { url:
+"/Register", templateUrl: "Register.html", controller: "message1", })
+.state("references", { url: "/references", templateUrl: "references.html",
+controller: "message1", }); }, ]); // app.filter("searchFor", function () { //
+All filters must return a function. The first parameter // is the data that is
+to be filtered, and the second is an // argument that may be passed with a colon
+(searchFor:searchString) // return function (arr, searchString) { // if
+(!searchString) { // return arr; // } // var result = []; // searchString =
+searchString.toLowerCase(); // // Using the forEach helper method to loop
+through the array // angular.forEach(arr, function (item) { // if
+(item.title.toLowerCase().indexOf(searchString) !== -1) { // result.push(item);
+// } // }); // return result; // }; // }); controller part of ui grid
+app.controller("message1", [ "$scope", function ($scope) { $scope.a = 10;
+$scope.b = 20; }, ]);
