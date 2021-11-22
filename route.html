@@ -41,7 +41,7 @@
         <img src="loading-gif.gif" alt="" />
       </div>
 
-      <!-- =======================================search======================================= -->
+      <!-- =======================================first search======================================= -->
 
       <div class="mb-3 row justify-content-center">
         <label class="col-sm-2 col-form-label">Search</label>
@@ -57,24 +57,24 @@
         </div>
       </div>
 
-      <!-- =================================================directive================================= -->
+      <div my-directive info="items" ng-if="searchString != undefined"></div>
 
-      <!-- <div my-directive info="items" ng-if="searchString != undefined"></div> -->
+      <!-- ================================================= Second Search  ================================= -->
 
-      <div class="mb-3 row justify-content-center">
+      <!-- <div class="mb-3 row justify-content-center">
         <label class="col-sm-2 col-form-label">Search</label>
         <div class="col-sm-5">
           <input
             type="text"
             class="form-control"
-            ng-keydown="$event.keyCode === 13 && newFunction()"
+            ng-keydown="$event.keyCode === 13 && nitems"
             placeholder="Search Items"
             ng-model="searchstr"
             ng-change="refreshdata(searchstr)"
           />
         </div>
       </div>
-      <div my-directive info="finalArray" ng-if="searchstr != undefined"></div>
+      <div my-directive info="nitems"></div> -->
     </div>
   </body>
 </html>

@@ -4,38 +4,6 @@
     .module("filters", [])
 
     .controller("MainCtrl", function ($scope, $timeout, $filter) {
-      $scope.newFunction = function () {
-        var str = $scope.searchstr;
-
-        $scope.finalArray = $filter("filter")($scope.getdata, str); //filter
-        // $scope.items1 = $filter("filter")($scope.nextdata, str1, undefined);
-
-        $scope.loader = true;
-        $timeout(function () {
-          $scope.finalArray = $scope.finalArray[0].title;
-          // $scope.items1 = $scope.items1[0].title.toUpperCase();
-
-          $scope.loader = false;
-        }, 500);
-      };
-      $scope.myFunction = function () {
-        var str = $scope.searchString;
-        // console.log($scope.nextdata, "s");
-        // console.log(str, "y");
-        $scope.items = $filter("filter")($scope.nextdata, str); //filter
-        // $scope.items1 = $filter("filter")($scope.nextdata, str1, undefined);
-        console.log($scope.items, "N");
-        $scope.loader = true;
-        $timeout(function () {
-          $scope.items = $scope.items[0].title;
-          // $scope.items1 = $scope.items1[0].title.toUpperCase();
-
-          $scope.loader = false;
-        }, 500);
-      };
-
-      $scope.items = $scope.final;
-
       $scope.items = [
         {
           url: "https://en.wikipedia.org/wiki/Artificial_intelligence",
@@ -92,47 +60,60 @@
           image: "mahindra.jpg",
         },
       ];
+      $scope.newitems = angular.copy($scope.nitems);
 
-      $scope.finalArray = $scope.items.concat($scope.nitems);
-      console.log($scope.finalArray, "work");
-      $scope.getdata = angular.copy($scope.finalArray);
-      // $scope.items = [
-      //   {
-      //     url: "https://inferyx.com/",
-      //     title: "Inferyx",
-      //     image: "inferyx.jpg",
-      //   },
-      //   {
-      //     url: "https://en.wikipedia.org/wiki/Infosys",
-      //     title: "Infosys",
-      //     image: "in.jpg",
-      //   },
-      //   {
-      //     url: "https://en.wikipedia.org/wiki/Tata_Consultancy_Services",
-      //     title: "TCS",
-      //     image: "tcs.jpg",
-      //   },
-      //   {
-      //     url: "https://en.wikipedia.org/wiki/Tesla",
-      //     title: "Tesla",
-      //     image: "tesla.jpg",
-      //   },
-      //   {
-      //     url: "https://en.wikipedia.org/wiki/Mahindra",
-      //     title: "Mahindra",
-      //     image: "mahindra.jpg",
-      //   },
-      // ];
-
-      // $scope.nextdata = angular.copy($scope.company);
+      //   $scope.newFunction = function () {};
+      //   // console.log($scope.finalArray, "work");
+      //   $scope.getdata = angular.copy($scope.finalArray);
     })
 
     .directive("myDirective", function () {
       return {
-        // restrict: "E",
+        restrict: "EA",
+
+        // transclude: true,
 
         scope: {
           myinfo: "=info",
+        },
+
+        link: function ($scope, $timeout, elem, attrs, $filter, controllers) {
+          console.log($scope.myinfo, "inside link");
+          // $scope.myInfo = function ($scope, $timeout, $filter) {
+          //   // var str = $scope.searchString;
+          //   // console.log(str, "print str");
+          // };
+          $scope.myFunction = function () {
+            console.log($scope.myinfo, "print myinfo");
+
+            // console.log(myinfo, "yes");
+            var str = $scope.searchString;
+            console.log(searchString, "yes");
+
+            $scope.items = $filter("filter")($scope.myinfo, str, undefined); //filter
+
+            $scope.loader = true;
+
+            $timeout(function () {
+              if ($scope.items) {
+                $scope.items = $scope.items;
+              }
+              // $scope.items1 = $scope.items1[0].title.toUpperCase();
+              $scope.loader = false;
+            }, 2000);
+
+            var str = $scope.searchstr;
+
+            $scope.nitems = $filter("filter")($scope.myinfo, str, undefined); //filter
+
+            $scope.loader = true;
+            $timeout(function () {
+              if ($scope.nitems) {
+                $scope.nitems = $scope.nitems;
+              }
+              $scope.loader = false;
+            }, 2000);
+          };
         },
 
         templateUrl: "my-directive.html",
@@ -140,3 +121,25 @@
       };
     });
 })(window.angular);
+
+// $scope.items = $scope.final;
+
+// $scope.finalArray = $scope.items
+
+// $scope.titlesArray=[];
+// $scope.finalArray.forEach(element => {
+//   $scope.titlesArray.push(element.title)
+// });
+
+// console.log($scope.finalArray);
+// $scope.items1 = $filter("filter")($scope.nextdata, str1, undefined);
+// $scope.displayArray = []
+// $scope.finalArray.forEach(element => {
+//   console.log(element.title)
+//   console.log(str)
+//   $scope.finalArray = $filter("filter")($scope.finalArray, str,undefined);
+//   if(element.title==str){
+//     $scope.displayArray.push(element)
+//   }
+// });
+// console.log($scope.displayArray);
